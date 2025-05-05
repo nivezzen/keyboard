@@ -1,0 +1,67 @@
+(defcfg
+  process-unmapped-keys yes
+)
+
+(defsrc
+  esc
+  lsgt      1    2    3    4    5    6       7    8    9    0    -    =    bspc del
+  tab       q    w    e    r    t            y    u    i    o    p    [    ]    ret
+  caps      a    s    d    f    g            h    j    k    l    ;    '    \
+  lsft grv  z    x    c    v    b            n    m    ,    .    /    rsft
+  lctl lalt lmet                    spc                     rmet                    lft  down up   rght
+)
+
+(defalias
+  shf (multi lsft (layer-while-held shift))
+  1 (unshift 1)
+  2 (unshift 2)
+  3 (unshift 3)
+  4 (unshift 4)
+  5 (unshift 5)
+  6 (unshift 6)
+  7 (unshift 7)
+  8 (unshift 8)
+  9 (unshift 9)
+  0 (unshift 0)
+
+  sym (layer-while-held symbols)
+  . (unshift .)
+
+  nav (layer-while-held navigation)
+)
+
+(deflayer base
+  XX
+  caps      grv  /    S-9  =    '    -       ret  S-8  S-0  S--     rsft   XX   XX XX
+  tab       q    w    e    r    t            y    u    i    o    p    XX   XX   XX
+  esc       a    s    d    f    g            h    j    k    l    ;    @nav XX
+  @shf lctl z    x    c    v    b            n    m    bspc ,    XX   rsft
+  XX   lalt lmet                    spc                     @sym                 XX XX XX XX
+)
+
+(deflayer shift
+  _
+  _      @1   @2   @3   @4   @5  @6        @7    @8   @9   @0  _    _   _   _
+  _       _    _    _    _    _            _    _    _    _    _    _   _   _
+  _       _    _    _    _    _            _    _    _    _    _    _   _
+  _ _     _    _    _    _    _            _    _    _    @.   _    _
+  _   _   _                    _                     _                          _ _ _ _
+)
+
+(deflayer symbols
+  _
+  _       _    _    _    _    _    _       _    _    _    _    _    _   _   _
+  _       _    S-/  S-1  S-=  S-'          _    S-5  S-3  S-4  _    _   _   _
+  _       _    S-,  [    S-[  S-7          S-\  S-]  ]    S-.  _    _   _
+  _ _     _    _    S-2  S-6  _            S-`  \    del  _    _    _
+  _   _   _                    _                     _                          _ _ _ _
+)
+
+(deflayer navigation
+  _
+  _       _    _    _    _    _   _        _    _    _    _    _    _   _   _
+  _       _    _    _    _    _            _    _    _    _    _    _   _   _
+  _       _    _    _    _    _            lft  down up   rght _    _   _
+  _ _     _    _    _    _    _            _    _    _    _    _    _
+  _   _   _                    _                     _                          _ _ _ _
+)
